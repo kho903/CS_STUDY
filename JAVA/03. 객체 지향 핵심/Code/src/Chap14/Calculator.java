@@ -1,4 +1,6 @@
-package Chap11;
+package Chap14;
+
+import Chap14.Calc;
 
 public abstract class Calculator implements Calc {
     @Override
