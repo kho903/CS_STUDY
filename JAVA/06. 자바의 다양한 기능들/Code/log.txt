@@ -1,0 +1,28 @@
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+가장 미세: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+보다 미세: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+미세: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+구성: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+정보: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+경고: log test
+8월 18, 2021 4:30:33 오후 chap11.MyLogger log
+심각: log test
+8월 18, 2021 4:31:25 오후 chap11.MyLogger log
+정보: log test
+8월 18, 2021 4:31:25 오후 chap11.MyLogger log
+경고: log test
+8월 18, 2021 4:31:25 오후 chap11.MyLogger log
+심각: log test
+8월 18, 2021 4:52:16 오후 chap11.MyLogger warning
+경고: name must not be null
+8월 18, 2021 4:52:16 오후 chap11.MyLogger warning
+경고: 이름이 너무 깁니다.
+8월 18, 2021 4:53:09 오후 chap11.MyLogger warning
+경고: name must not be null
+8월 18, 2021 4:53:09 오후 chap11.MyLogger warning
+경고: 이름이 너무 깁니다.
