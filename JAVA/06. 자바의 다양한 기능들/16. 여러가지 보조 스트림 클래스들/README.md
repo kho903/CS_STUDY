@@ -57,3 +57,57 @@ public class BufferedStreamTest {
   }
 }
 ```
+
+## DataInputStream과 DataOutputStream
+- 자료가 메모리에 저장된 상태 그대로 읽거나 쓰는 스트림
+- DataInputStream 메서드
+  - byte readByte() : 1바이트를 읽어 반환한다.
+  - boolean readBoolean() : 읽은 자료가 0이 아니면 true를, 0이면 false를 반환한다.
+  - char readChar() : 한 문자를 읽어 반환한다.
+  - short readShort() : 2바이트를 읽어 정수 값을 반환한다.
+  - int readInt() : 4바이트를 읽어 정수 값을 반환한다.
+  - long readLong() : 8바이트를 읽어 정수 값을 반환한다.
+  - float readFloat() : 4바이트를 읽어 실수 값을 반환한다.
+  - double readDouble() : 8바이트를 읽어 실수 값을 반환한다.
+  - String readUTF() : 수정된 UTF-8 인코딩 기반으로 문자열을 읽어 반환한다.
+- DataOutputStream 메서드
+  - void writeByte(int v) : 1바이트의 자료를 출력한다.
+  - void writeBoolean(boolean v) : 1바이트의 값을 출력한다.
+  - void writeChar(int v) : 2바이트를 출력한다.
+  - void writeShort(int v) : 2바이트를 출력한다.
+  - void writeInt(int v) : 4바이트를 출력한다.
+  - void writeLong(long v) : 8바이트를 출력한다.
+  - void writeFloat(float v) : 4바이트를 출력한다.
+  - void writeDouble(double v) : 8바이트를 출력한다.
+  - void writeUTF(String str) : 수정된 UTF-8 인코딩 기반으로 문자열을 출력한다.
+
+```java
+public class DataStreamTest {
+
+  public static void main(String[] args) {
+    try (FileOutputStream fos = new FileOutputStream("data.txt");
+        DataOutputStream dos = new DataOutputStream(fos))
+    {
+      dos.writeByte(100);
+      dos.writeChar('A');
+      dos.writeInt(10);
+      dos.writeFloat(3.14f);
+      dos.writeUTF("Test");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    try (FileInputStream fis = new FileInputStream("data.txt");
+        DataInputStream dis = new DataInputStream(fis))
+    {
+      System.out.println(dis.readByte());
+      System.out.println(dis.readChar());
+      System.out.println(dis.readInt());
+      System.out.println(dis.readFloat());
+      System.out.println(dis.readUTF());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
