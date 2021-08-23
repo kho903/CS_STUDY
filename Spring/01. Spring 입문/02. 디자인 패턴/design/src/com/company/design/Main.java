@@ -19,6 +19,7 @@ import com.company.design.proxy.IBrowser;
 import com.company.design.singleton.AClazz;
 import com.company.design.singleton.BClazz;
 import com.company.design.singleton.SocketClient;
+import com.company.design.strategy.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -117,7 +118,6 @@ public class Main {
         button.click("메시지 전달 : click3");
         button.click("메시지 전달 : click4");
 
-         */
 
         // Facade 패턴
         Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
@@ -144,6 +144,29 @@ public class Main {
         sftpClient.read();
 
         sftpClient.disConnect();
+
+         */
+
+        Encoder encoder = new Encoder();
+
+        // base64
+        EncodingStrategy base64 = new Base64Strategy();
+
+        // normal
+        EncodingStrategy normal = new NormalStrategy();
+
+        String message = "hello java";
+        encoder.setEncodingStrategy(base64);
+        String base64Result = encoder.getMessage(message);
+        System.out.println(base64Result);
+
+        encoder.setEncodingStrategy(normal);
+        String normalResult = encoder.getMessage(message);
+        System.out.println(normalResult);
+
+        encoder.setEncodingStrategy(new AppendStrategy());
+        String appendResult = encoder.getMessage(message);
+        System.out.println(appendResult);
     }
 
     public static void connect(Electronic110V electronic110V) {
