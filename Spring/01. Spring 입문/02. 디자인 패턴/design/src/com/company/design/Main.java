@@ -7,6 +7,10 @@ import com.company.design.decorator.A4;
 import com.company.design.decorator.A5;
 import com.company.design.decorator.Audi;
 import com.company.design.decorator.ICar;
+import com.company.design.facade.Ftp;
+import com.company.design.facade.Reader;
+import com.company.design.facade.SftpClient;
+import com.company.design.facade.Writer;
 import com.company.design.observer.Button;
 import com.company.design.observer.IButtonListener;
 import com.company.design.proxy.Browser;
@@ -97,7 +101,6 @@ public class Main {
         // a5
         ICar audi5 = new A5(audi, "A5");
         audi5.showPrice();
-         */
 
         // Observer 패턴
         Button button = new Button("버튼");
@@ -113,6 +116,34 @@ public class Main {
         button.click("메시지 전달 : click2");
         button.click("메시지 전달 : click3");
         button.click("메시지 전달 : click4");
+
+         */
+
+        // Facade 패턴
+        Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
+        ftpClient.connect();
+        ftpClient.moveDirectory();
+
+        Writer writer = new Writer("text.tmp");
+        writer.fileConnect();
+        writer.write();
+
+        Reader reader = new Reader("text.tmp");
+        reader.fileConnect();
+        reader.fileRead();
+
+        reader.fileDisconnect();
+        writer.fileDisconnect();
+        ftpClient.disConnect();
+
+        // Facade 패턴 적용 후
+        SftpClient sftpClient = new SftpClient("www.foo.co.kr", 22, "/home/etc/", "text.tmp");
+        sftpClient.connect();
+
+        sftpClient.write();
+        sftpClient.read();
+
+        sftpClient.disConnect();
     }
 
     public static void connect(Electronic110V electronic110V) {
