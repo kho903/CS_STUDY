@@ -60,5 +60,31 @@ public class NodeTest {
         System.out.println(MyLinkedList3.delNode(20));
         MyLinkedList3.printAll();
 
+        System.out.println("=====Doubly Linked List=====");
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<Integer>();
+
+        doublyLinkedList.addNode(2);
+        doublyLinkedList.addNode(4);
+        doublyLinkedList.addNode(5);
+        doublyLinkedList.addNode(8);
+        doublyLinkedList.addNode(3);
+        doublyLinkedList.printAll();
+        System.out.println("=====Doubly Linked List Search=====");
+
+        DoublyLinkedList<Integer> doublyLinkedList2 = new DoublyLinkedList<Integer>();
+
+        doublyLinkedList2.addNode(1);
+        doublyLinkedList2.addNode(2);
+        doublyLinkedList2.addNode(3);
+        doublyLinkedList2.addNode(4);
+        doublyLinkedList2.addNode(5);
+        doublyLinkedList2.printAll();
+        System.out.println(doublyLinkedList2.searchFromHead(1));
+        System.out.println(doublyLinkedList2.searchFromTail(1));
+        System.out.println(doublyLinkedList2.searchFromTail(6));
+
+        System.out.println("=====Doubly Linked List=====");
+        System.out.println("=====Doubly Linked List=====");
+        System.out.println("=====Doubly Linked List=====");
     }
 }
