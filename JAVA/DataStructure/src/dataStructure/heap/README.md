@@ -38,3 +38,30 @@
 - root 노드의 값이 child node 보다 작을 경우, 
   root 노드의 child node 중 가장 큰 값을 가진 노드와 root 노드 위치를 바꿔주는 작업을 반복함 (swap)
 
+# 힙 구현
+## 힙과 배열
+- 일반적으로 힙 구현시 배열 자료구조를 활용함
+- 배열은 인덱스가 0번부터 시작하지만, 힙 구현의 편의를 위해, root 노드 인덱스 번호를 1로 지정하면, 구현이 좀더 수월함
+  - 부모 노드 인덱스 번호(parent node's index) = 자식 노드 인덱스 번호 (child node's index) / 2
+    - 자바에서는 / 연산자로 몫을 구할 수 있음
+  - 왼쪽 자식 노드 인덱스 번호(left child node's index) = 부모 노드 인덱스 번호(parent node's index) * 2
+  - 오른쪽 자식 노드 인덱스 번호(right child node's index) = 부모 노드 인덱스 번호(parent node's index) * 2 + 1
+  
+## 힙에 데이터 삽입 구현
+### 구현 1
+- import java.util.ArrayList를 활용해서 구현
+- 인덱스 번호는 1번부터 시작하도록 변경
+## 힙 클래스 구현 - insert
+- 삽입한 노드가 부모 노드의 값보다 클 경우, 부모 노드와 삽입한 노드 위치를 바꿈
+- 삽입한 노드가 루트 노드가 되거나, 부모 노드보다 값이 작거나 같을 경우까지 반복
+
+## 힙 구현에 사용된 Collections.swap() 메서드 사용법 이해하기
+- swap(스왑)이란, 두 데이터의 위치를 맞바꾸는 것을 의미함
+- swap 함수를 별도로 구현할 수도 있지만, JAVA에서는 Collections 패키지에서 swap() 메서드를 제공해주고 있음
+  - 하나의 배열 안에 있는 두 데이터의 위치를 서로 맞바꾸고 싶을 때 사용 가능
+`import java.util.Collections;`
+`Collections.swap(List list, int a, int b);`
+- list : 스왑할 데이터들이 들어 있는 배열 변수
+- a : 스왑할 데이터들이 들어 있는 배열 변수
+- b : 스왑할 데이터 인덱스 번호
+
