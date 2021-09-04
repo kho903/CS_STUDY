@@ -4,16 +4,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Graph {
-    public static void main(String[] args) {
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("A");
-        arrayList.add("B");
-        String node = arrayList.remove(0);
-        System.out.println(arrayList);
-        System.out.println(node);
-        System.out.println(arrayList.contains("A"));
+public class BFS {
+    public static ArrayList<String> bfsFunc(HashMap<String, ArrayList<String>> graph, String startNode) {
+        ArrayList<String> visited = new ArrayList<String>();
+        ArrayList<String> needVisit = new ArrayList<String>();
 
+        needVisit.add(startNode);
+        while (needVisit.size() > 0) {
+            String node = needVisit.remove(0);
+            if (!visited.contains(node)) {
+                visited.add(node);
+                needVisit.addAll(graph.get(node));
+            }
+        }
+        return visited;
+    }
+
+    public static void main(String[] args) {
         HashMap<String, ArrayList<String>> graph = new HashMap<>();
         graph.put("A", new ArrayList<String>(Arrays.asList("B", "C")));
         graph.put("B", new ArrayList<String>(Arrays.asList("A", "D")));
@@ -26,12 +33,6 @@ public class Graph {
         graph.put("I", new ArrayList<String>(Arrays.asList("C", "J")));
         graph.put("J", new ArrayList<String>(Arrays.asList("I")));
 
-        System.out.println(graph);
-
-
-        ArrayList<String> aList = new ArrayList<>();
-        aList.add("C");
-        aList.addAll(graph.get("A"));
-        System.out.println(aList);
+        System.out.println(bfsFunc(graph, "A"));
     }
 }
