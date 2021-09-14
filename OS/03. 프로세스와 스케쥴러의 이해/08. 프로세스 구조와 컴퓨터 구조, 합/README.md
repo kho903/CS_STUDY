@@ -12,7 +12,7 @@
 > DATA를 BSS와 DATA로 분리
 - Stack
 - heap
-- data
+- data  
   - BSS : 초기화되지 않은 전역 변수
   - DATA : 초기값이 있는 전역 변수
 - code (TEXT)
