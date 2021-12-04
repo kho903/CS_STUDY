@@ -14,7 +14,7 @@ class UserTest {
         user.setName("Kim");
 
         // @AllArgsConstructor : 모든 인자 포함 생성자
-        User user1 = new User("Lee", "a@a.com", LocalDateTime.now(), LocalDateTime.now());
+        User user1 = new User(null, "Lee", "a@a.com", LocalDateTime.now(), LocalDateTime.now());
         // @RequiredArgsConstructor : @NonNull 인자 포함 생성자
         User user2 = new User("Park", "b@b.com");
 
