@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -179,4 +180,30 @@ class UserRepositoryTest {
 
         System.out.println("findByNameLike(\"%art%\") = " + userRepository.findByNameLike("%art%"));
     }
+
+    @Test
+    void pagingAndSortingTest() {
+        System.out.println("findTop1ByName(\"martin\") = " + userRepository.findTop1ByName("martin"));
+        System.out.println("findLast1ByName(\"martin\") = " + userRepository.findLast1ByName("martin"));
+        System.out.println("findTopByNameOrderByIdDesc(\"martin\") = " + userRepository.findTopByNameOrderByIdDesc("martin"));
+        System.out.println("findFirstByNameOrderByIdDescEmailAsc(\"martin\") = " + userRepository.findFirstByNameOrderByIdDescEmailAsc("martin"));
+        System.out.println("userRepository.findFirstByName(\"martin\", getSort()) = " + userRepository.findFirstByName("martin", getSort()));
+    }
+
+    private Sort getSort() {
+        return Sort.by(
+                Sort.Order.desc("id"),
+                Sort.Order.asc("email"),
+                Sort.Order.desc("createdAt"),
+                Sort.Order.asc("updatedAt")
+        );
+    }
 }
+
+
+
+
+
+
+
+
