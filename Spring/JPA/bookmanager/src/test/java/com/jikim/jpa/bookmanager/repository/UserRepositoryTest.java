@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
@@ -145,5 +146,22 @@ class UserRepositoryTest {
 
         // 없는 키워드는 무시! 그냥 findByName과 같이 동작
         System.out.println("findLast1ByName : " + userRepository.findLast1ByName("martin"));
+    }
+
+    @Test
+    void queryMethodTest() {
+        System.out.println("findByEmailAndName : " + userRepository.findByEmailAndName("martin@fastcampus.com", "martin"));
+        System.out.println("findByEmailOrName : " + userRepository.findByEmailOrName("martin@fastcampus.com", "dennis"));
+
+        System.out.println("findByCreatedAtAfter : " + userRepository.findByCreatedAtAfter(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findByIdAfter : " + userRepository.findByIdAfter(4L));
+
+        System.out.println("findByCreatedAtGreaterThan : " + userRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
+        System.out.println("findByCreatedAtGreaterThanEqual : " + userRepository.findByCreatedAtGreaterThanEqual(LocalDateTime.now().minusDays(1L)));
+
+        System.out.println("findByCreatedAtBetween : " + userRepository.findByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(1L)));
+        System.out.println("findByIdBetween : " + userRepository.findByIdBetween(1L, 3L));
+
+        System.out.println("findByIdGreaterThanEqualAndIdLessThanEqual : " + userRepository.findByIdGreaterThanEqualAndIdLessThanEqual(1L, 3L));
     }
 }
