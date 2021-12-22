@@ -114,4 +114,14 @@ class UserRepositoryTest {
 
         userRepository.findAll(example).forEach(System.out::println);
     }
+
+    @Test
+    void crud() {
+        userRepository.save(new User("david", "david@fastcampus.com"));
+
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user.setEmail("martin-updated@fastcampus.com");
+
+        userRepository.save(user);
+    }
 }
