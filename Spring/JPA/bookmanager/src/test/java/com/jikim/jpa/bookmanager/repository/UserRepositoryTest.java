@@ -164,4 +164,19 @@ class UserRepositoryTest {
 
         System.out.println("findByIdGreaterThanEqualAndIdLessThanEqual : " + userRepository.findByIdGreaterThanEqualAndIdLessThanEqual(1L, 3L));
     }
+
+    @Test
+    void queryMethodTest2() {
+        System.out.println("findByIdIsNotNull() = " + userRepository.findByIdIsNotNull());
+
+//        System.out.println("findByAddressIsNotEmpty() = " + userRepository.findByAddressIsNotEmpty());
+
+        System.out.println("findByNameIn() = " + userRepository.findByNameIn(Lists.newArrayList("martin", "dennis")));
+
+        System.out.println("findByNameStartingWith(\"mar\") = " + userRepository.findByNameStartingWith("mar"));
+        System.out.println("findByNameEndingWith(\"tin\") = " + userRepository.findByNameEndingWith("tin"));
+        System.out.println("findByNameContains(\"art\") = " + userRepository.findByNameContains("art"));
+
+        System.out.println("findByNameLike(\"%art%\") = " + userRepository.findByNameLike("%art%"));
+    }
 }
