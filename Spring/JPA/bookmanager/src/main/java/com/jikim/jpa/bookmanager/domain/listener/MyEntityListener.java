@@ -1,4 +1,4 @@
-package com.jikim.jpa.bookmanager.domain;
+package com.jikim.jpa.bookmanager.domain.listener;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;

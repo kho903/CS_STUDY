@@ -1,4 +1,4 @@
-package com.jikim.jpa.bookmanager.domain;
+package com.jikim.jpa.bookmanager.domain.listener;
 
 import java.time.LocalDateTime;
 

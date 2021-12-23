@@ -1,48 +1,40 @@
 package com.jikim.jpa.bookmanager.domain;
 
+import com.jikim.jpa.bookmanager.domain.listener.Auditable;
+import com.jikim.jpa.bookmanager.domain.listener.UserEntityListener;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
-import javax.persistence.PostLoad;
-import javax.persistence.PostPersist;
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @Entity
 //@Table(name = "user", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
-@EntityListeners(value = MyEntityListener.class)
-public class User implements Auditable {
+//@EntityListeners(value = {MyEntityListener.class, UserEntityListener.class})
+@EntityListeners(value = {UserEntityListener.class})
+public class User extends BaseEntity implements Auditable {
     @Id
     @GeneratedValue
     private Long id;
@@ -54,9 +46,12 @@ public class User implements Auditable {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+//    @Column(updatable = false)
+//    @CreatedDate
+//    private LocalDateTime createdAt;
+//
+//    @LastModifiedDate
+//    private LocalDateTime updatedAt;
 
 //    @Transient // db에 반영 X
 //    private String testData;
