@@ -11,13 +11,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,8 +41,16 @@ public class User {
     private String name;
     @NonNull
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Column(updatable = false)
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @Transient // db에 반영 X
+    private String testData;
 
 //    @OneToMany(fetch = FetchType.EAGER)
 //    private List<Address> address;
