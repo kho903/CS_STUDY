@@ -4,16 +4,14 @@ import com.jikim.jpa.bookmanager.domain.User;
 import com.jikim.jpa.bookmanager.domain.UserHistory;
 import com.jikim.jpa.bookmanager.repository.UserHistoryRepository;
 import com.jikim.jpa.bookmanager.support.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 
 public class UserEntityListener {
 
-    @PrePersist
-    @PreUpdate
+    @PostPersist
+    @PostUpdate
     public void prePersistAndPreUpdate(Object o) {
         UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
         User user = (User) o;
