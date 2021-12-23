@@ -34,7 +34,7 @@ import java.time.LocalDateTime;
 //@Table(name = "user", indexes = {@Index(columnList = "name")}, uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 //@EntityListeners(value = {MyEntityListener.class, UserEntityListener.class})
 @EntityListeners(value = {UserEntityListener.class})
-public class User extends BaseEntity implements Auditable {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;

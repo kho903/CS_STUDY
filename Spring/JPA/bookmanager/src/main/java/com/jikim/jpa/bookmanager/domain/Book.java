@@ -20,9 +20,7 @@ import java.time.LocalDateTime;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-//@EntityListeners(value = MyEntityListener.class)
-//@EntityListeners(value = AuditingEntityListener.class)
-public class Book extends BaseEntity implements Auditable {
+public class Book extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -30,22 +28,10 @@ public class Book extends BaseEntity implements Auditable {
 
     private String name;
 
-    private String author;
+    private String category;
 
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
+    private Long authorId;
 
-//    @PrePersist
-//    public void prePersist() {
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//    }
-//
-//    @PreUpdate
-//    public void preUpdate() {
-//        this.updatedAt = LocalDateTime.now();
-//    }
+    private Long publisherId;
+
 }
