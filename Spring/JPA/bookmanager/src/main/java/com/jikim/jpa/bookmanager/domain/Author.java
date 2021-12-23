@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,11 +30,17 @@ public class Author extends BaseEntity {
 
     private String country;
 
-    @ManyToMany
+//    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "author_id")
     @ToString.Exclude
-    private List<Book> books = new ArrayList<>();
+    private List<BookAndAuthor> bookAndAuthors = new ArrayList<>();
 
-    public void addBook(Book... book) {
-        Collections.addAll(this.books, book);
+//    public void addBook(Book... book) {
+//        Collections.addAll(this.books, book);
+//    }
+
+    public void addBookAndAuthors(BookAndAuthor... bookAndAuthors) {
+        Collections.addAll(this.bookAndAuthors, bookAndAuthors);
     }
 }
