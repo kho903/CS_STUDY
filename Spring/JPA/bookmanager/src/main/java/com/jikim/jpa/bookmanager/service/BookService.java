@@ -6,6 +6,7 @@ import com.jikim.jpa.bookmanager.repository.AuthorRepository;
 import com.jikim.jpa.bookmanager.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -32,5 +33,18 @@ public class BookService {
         authorRepository.save(author);
 
         throw new RuntimeException("오류가 나서 DB Commit 발생 X");
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void get(Long id) {
+        System.out.println(">>> " + bookRepository.findById(id));
+        System.out.println(">>> " + bookRepository.findAll());
+
+        System.out.println(">>> " + bookRepository.findById(id));
+        System.out.println(">>> " + bookRepository.findAll());
+
+        Book book = bookRepository.findById(id).get();
+        book.setName("change???");
+        bookRepository.save(book);
     }
 }

@@ -1,5 +1,6 @@
 package com.jikim.jpa.bookmanager.service;
 
+import com.jikim.jpa.bookmanager.domain.Book;
 import com.jikim.jpa.bookmanager.repository.AuthorRepository;
 import com.jikim.jpa.bookmanager.repository.BookRepository;
 import org.junit.jupiter.api.Test;
@@ -26,5 +27,18 @@ class BookServiceTest {
         }
         System.out.println("books : " + bookRepository.findAll());
         System.out.println("authors : " + bookRepository.findAll());
+    }
+
+    @Test
+    void isolationTest() {
+        Book book = new Book();
+        book.setName("JPA");
+
+        bookRepository.save(book);
+
+        bookService.get(1L);
+
+        System.out.println(">>> " + bookRepository.findAll());
+
     }
 }
