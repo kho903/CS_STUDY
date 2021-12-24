@@ -14,8 +14,13 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
+//    public void put() {
+//        // 잘못된 사용법 -> putBookAndAuthor의 @Transactional 무시됨
+//        this.putBookAndAuthor();
+//    }
+
     @Transactional
-    public void putBookAndAuthor() {
+    void putBookAndAuthor() {
         Book book = new Book();
         book.setName("JPA");
 
