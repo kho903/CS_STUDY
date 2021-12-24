@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+
 @Service
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
+    private final EntityManager em;
 
 //    public void put() {
 //        // 잘못된 사용법 -> putBookAndAuthor의 @Transactional 무시됨
@@ -35,16 +38,21 @@ public class BookService {
         throw new RuntimeException("오류가 나서 DB Commit 발생 X");
     }
 
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void get(Long id) {
         System.out.println(">>> " + bookRepository.findById(id));
         System.out.println(">>> " + bookRepository.findAll());
 
+        em.clear();
+
         System.out.println(">>> " + bookRepository.findById(id));
         System.out.println(">>> " + bookRepository.findAll());
 
-        Book book = bookRepository.findById(id).get();
-        book.setName("change???");
-        bookRepository.save(book);
+        bookRepository.update();
+
+        em.clear();
+//        Book book = bookRepository.findById(id).get();
+//        book.setName("change???");
+//        bookRepository.save(book);
     }
 }
