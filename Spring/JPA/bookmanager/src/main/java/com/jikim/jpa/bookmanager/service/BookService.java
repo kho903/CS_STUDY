@@ -7,6 +7,7 @@ import com.jikim.jpa.bookmanager.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -17,25 +18,27 @@ public class BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final EntityManager em;
+    private final AuthorService authorService;
 
 //    public void put() {
 //        // 잘못된 사용법 -> putBookAndAuthor의 @Transactional 무시됨
 //        this.putBookAndAuthor();
 //    }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     void putBookAndAuthor() {
         Book book = new Book();
         book.setName("JPA");
 
         bookRepository.save(book);
 
-        Author author = new Author();
-        author.setName("martin");
-
-        authorRepository.save(author);
-
-        throw new RuntimeException("오류가 나서 DB Commit 발생 X");
+        authorService.putAuthor();
+//        Author author = new Author();
+//        author.setName("martin");
+//
+//        authorRepository.save(author);
+//
+//        throw new RuntimeException("오류가 나서 DB Commit 발생 X");
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)

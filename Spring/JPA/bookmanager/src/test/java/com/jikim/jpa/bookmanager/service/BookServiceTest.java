@@ -26,7 +26,7 @@ class BookServiceTest {
             System.out.println(">>> " + e.getMessage());
         }
         System.out.println("books : " + bookRepository.findAll());
-        System.out.println("authors : " + bookRepository.findAll());
+        System.out.println("authors : " + authorRepository.findAll());
     }
 
     @Test
