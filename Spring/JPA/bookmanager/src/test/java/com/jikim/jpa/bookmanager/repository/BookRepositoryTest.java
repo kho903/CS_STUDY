@@ -126,7 +126,8 @@ class BookRepositoryTest {
 
         System.out.println(bookRepository.findBookNameAndCategory());
 
-        bookRepository.findBookNameAndCategory().forEach(tuple -> System.out.println(tuple.get(0) + " : " + tuple.get(1)));
+//        bookRepository.findBookNameAndCategory().forEach(tuple -> System.out.println(tuple.get(0) + " : " + tuple.get(1)));
+        bookRepository.findBookNameAndCategory().forEach(b -> System.out.println(b.getName() + " : " + b.getCategory()));
     }
 
     private void givenBookAndReview() {
