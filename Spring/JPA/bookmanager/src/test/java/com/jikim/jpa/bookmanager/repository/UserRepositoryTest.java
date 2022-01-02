@@ -1,5 +1,6 @@
 package com.jikim.jpa.bookmanager.repository;
 
+import com.jikim.jpa.bookmanager.domain.Address;
 import com.jikim.jpa.bookmanager.domain.Gender;
 import com.jikim.jpa.bookmanager.domain.User;
 import com.jikim.jpa.bookmanager.domain.UserHistory;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,6 +30,9 @@ class UserRepositoryTest {
 
     @Autowired
     private UserHistoryRepository userHistoryRepository;
+
+    @Autowired
+    private EntityManager em;
 
     @Test
     void findTest() {
@@ -308,6 +313,38 @@ class UserRepositoryTest {
         result.forEach(System.out::println);
 
         System.out.println("userHistoryRepository.findAll().get(0).getUser() = " + userHistoryRepository.findAll().get(0).getUser());
+    }
+
+    @Test
+    void embedTest() {
+        userRepository.findAll().forEach(System.out::println);
+
+        User user = new User();
+        user.setName("kim");
+        user.setHomeAddress(new Address("서울시", "강남구", "강남대로", "12345"));
+        user.setCompanyAddress(new Address("서울시", "성동구", "성수이로", "54321"));
+
+        userRepository.save(user);
+
+        User user1 = new User();
+        user1.setName("Lee");
+        user1.setHomeAddress(null);
+        user1.setCompanyAddress(null);
+
+        userRepository.save(user1);
+
+        User user2 = new User();
+        user2.setName("Park");
+        user2.setHomeAddress(new Address());
+        user2.setCompanyAddress(new Address());
+        userRepository.save(user2);
+
+        em.clear();
+
+        userRepository.findAll().forEach(System.out::println);
+        userHistoryRepository.findAll().forEach(System.out::println);
+
+        userRepository.findAllRowRecord().forEach(a -> System.out.println(a.values()));
     }
 }
 
