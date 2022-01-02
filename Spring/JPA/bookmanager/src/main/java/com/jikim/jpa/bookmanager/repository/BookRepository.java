@@ -32,6 +32,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             @Param("createdAt") LocalDateTime createdAt,
             @Param("updatedAt") LocalDateTime updatedAt);
 
-    @Query(value = "select b.name as name, b.category as category from Book b")
+//    @Query(value = "select b.name as name, b.category as category from Book b")
+    @Query(value = "select new com.jikim.jpa.bookmanager.repository.dto.BookNameAndCategory(b.name, b.category) from Book b")
     List<BookNameAndCategory> findBookNameAndCategory();
 }
