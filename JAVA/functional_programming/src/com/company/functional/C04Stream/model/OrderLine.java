@@ -58,4 +58,15 @@ public class OrderLine {
         this.amount = amount;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "OrderLine{" +
+            "id=" + id +
+            ", type=" + type +
+            ", productId=" + productId +
+            ", quantity=" + quantity +
+            ", amount=" + amount +
+            '}';
+    }
 }
