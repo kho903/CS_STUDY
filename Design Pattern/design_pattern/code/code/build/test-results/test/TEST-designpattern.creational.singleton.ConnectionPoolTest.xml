@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="designpattern.creational.singleton.ConnectionPoolTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-18T07:53:39" hostname="gimjihun-ui-MacBookAir.local" time="0.009">
-  <properties/>
-  <testcase name="singleton_pattern()" classname="designpattern.creational.singleton.ConnectionPoolTest" time="0.009"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
