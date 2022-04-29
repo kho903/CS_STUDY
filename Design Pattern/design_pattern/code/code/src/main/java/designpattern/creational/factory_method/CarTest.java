@@ -1,4 +1,4 @@
-package designpattern.factory_method;
+package designpattern.creational.factory_method;
 
 public class CarTest {
 
