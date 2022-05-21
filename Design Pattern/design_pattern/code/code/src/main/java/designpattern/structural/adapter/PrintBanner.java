@@ -1,7 +1,7 @@
 package designpattern.structural.adapter;
 
 // 상속
-// public class PrintBanner extends Banner implements Print {
+// public class PrintBanner extends Banner implements Printer {
 //
 // 	public PrintBanner(String string) {
 // 		super(string);
